@@ -13,6 +13,7 @@ from Add import *
 from History import *
 from Income import *
 
+
 class Ui_MainWindow(object):
     def Addv(self):
         self.window = QtWidgets.QDialog()
