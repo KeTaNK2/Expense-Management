@@ -22,7 +22,7 @@ class Expense (QMainWindow) :
         self.Exp.setupUi(self)
         self.show()
         self.Exp.Sedt.setText(str(x))
-        db = '''create table if not exists Expense(ID  SERIAL PRIMARY KEY,D date,inc int default 0,spent int default 0,Food int default 0,Travel int default 0,Personal int default 0,groc int default 0,grodis varchar(100),bill int default 0,billdis varchar(100),oth int default 0,othdis varchar(100) )'''
+        db = '''create table if not exists Expense(ID  SERIAL PRIMARY KEY,D date,inc int default 0,incdis varchar(100),spent int default 0,Food int default 0,Travel int default 0,Personal int default 0,groc int default 0,grodis varchar(100),bill int default 0,billdis varchar(100),oth int default 0,othdis varchar(100) )'''
 
 
         try:

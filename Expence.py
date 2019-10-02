@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import QDialog,QApplication,QTableWidgetItem,QMainWindow
 from Add import *
 from History import *
 from Income import *
+import psycopg2
+from psycopg2 import Error
 
 
 class Ui_MainWindow(object):
@@ -28,6 +30,33 @@ class Ui_MainWindow(object):
         self.Incv1 = Ui_InsM()
         self.Incv1.setupUi(self.window)
         self.window.show()
+        self.Incv1.IncAddbt.clicked.connect(self.IncvAdd)
+    def IncvAdd(self):
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
+        c = cur.fetchone()
+        if c[0] == True:
+            cur.execute('''SELECT incdis FROM expense WHERE d::date = date('now')''')
+            odis = cur.fetchone()
+            ndis=odis[0]+" "+self.Incv1.IncDis.text()
+            cur.execute('''update expense set incdis='%s' where d::date = date('now')'''%ndis)
+            conn.commit()
+            cur.execute('''update expense set inc=inc+%s where d::date = date('now')'''%(self.Incv1.IncAmount.text()))
+            conn.commit()
+            self.Res.setText("Date Added successfully")
+        else:
+            cur.execute('''insert into expense(d,inc,incdis) values (date('now'),%s,'%s') ;''' % (self.Incv1.IncAmount.text(),self.Incv1.IncDis.text()))
+            conn.commit()
+            self.Res.setText("Date Added successfully")
+
+
+
+
+
+
+
+
     def Histv(self):
         self.window = QtWidgets.QDialog()
         self.Histv1 = Ui_HistM()
