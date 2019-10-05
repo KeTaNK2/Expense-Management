@@ -21,10 +21,78 @@ class Ui_MainWindow(object):
         self.window = QtWidgets.QDialog()
         self.Addv1 = Ui_AddM()
         self.Addv1.setupUi(self.window)
-        self.Addv1.InsertD.clicked.connect(self.Insmsg)
+        self.Addv1.DAddDB.clicked.connect(self.Addf)
+        self.Addv1.GAddDB.clicked.connect(self.AddfG)
+        self.Addv1.OAddDB.clicked.connect(self.AddfO)
         self.window.show()
-    def Insmsg(self):
-        self.Addv1.ResIns.setText("Success")
+
+    def Addf(self):
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
+        c = cur.fetchone()
+        if c[0] == True:
+            cur.execute('''update expense set %s=%s+%s where d::date = date('now')''' % (self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex()),self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex()),self.Addv1.DAmount.text()))
+            conn.commit()
+            self.Addv1.ResIns.setText("Data Added Seccessfully !!!")
+        else:
+            cur.execute('''insert into expense(d,%s) values (date('now'),%s,'%s') ;'''%(self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex())))
+            conn.commit()
+            self.Addv1.ResIns.setText("Data Added Seccessfully !!!")
+    def AddfG(self):
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
+        c = cur.fetchone()
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        if c[0] == True:
+            cur.execute('''SELECT grodis FROM expense WHERE d::date = date('now')''')
+            odis = cur.fetchone()
+            if odis == None:
+                cur.execute('''update expense set grodis='%s' where d::date = date('now')''' % (self.Addv1.GDis.text()))
+            else:
+                ndis = odis[0] + " " + self.Addv1.GDis.text()
+                cur.execute('''update expense set grodis='%s' where d::date = date('now')''' % ndis)
+            conn.commit()
+            cur.execute('''update expense set groc=groc+%s where d::date = date('now')'''%(self.Addv1.GAmount.text()))
+            conn.commit()
+            self.Addv1.ResIns_2.setText("Date Added successfully")
+        else:
+            cur.execute('''insert into expense(d,groc,grodis) values (date('now'),%s,'%s') ;''' % (self.Addv1.GAmount.text(),self.Addv1.GDis.text()))
+            conn.commit()
+            self.Addv1.ResIns_2.setText("Date Added successfully")
+
+        conn.close()
+    def AddfO(self):
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
+        c = cur.fetchone()
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        if c[0] == True:
+            cur.execute('''SELECT othdis FROM expense WHERE d::date = date('now')''')
+            odis1 = cur.fetchone()
+            conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+            cur = conn.cursor()
+            if odis1[0] == None:
+                 cur.execute('''update expense set othdis='%s' where d::date = date('now')''' % (self.Addv1.ODis.text()))
+                 print("null")
+            else:
+                 print("notnull")
+                 ndis = odis1[0] + " " + self.Addv1.ODis.text()
+                 cur.execute('''update expense set othdis='%s' where d::date = date('now')''' % ndis)
+            conn.commit()
+            cur.execute('''update expense set oth=oth+%s where d::date = date('now')''' % (self.Addv1.OAmount.text()))
+            conn.commit()
+            self.Addv1.ResIns_3.setText("Date Added successfully")
+        else:
+            cur.execute('''insert into expense(d,oth,othdis) values (date('now'),%s,'%s') ;''' % (self.Addv1.OAmount.text(), self.Addv1.ODis.text()))
+            conn.commit()
+            self.Addv1.ResIns_3.setText("Date Added successfully")
+
+        conn.close()
     def Incv(self):
         self.window = QtWidgets.QDialog()
         self.Incv1 = Ui_InsM()
@@ -36,6 +104,8 @@ class Ui_MainWindow(object):
         cur = conn.cursor()
         cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
         c = cur.fetchone()
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
         if c[0] == True:
             cur.execute('''SELECT incdis FROM expense WHERE d::date = date('now')''')
             odis = cur.fetchone()
@@ -49,14 +119,7 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,inc,incdis) values (date('now'),%s,'%s') ;''' % (self.Incv1.IncAmount.text(),self.Incv1.IncDis.text()))
             conn.commit()
             self.Res.setText("Date Added successfully")
-
-
-
-
-
-
-
-
+        conn.close()
     def Histv(self):
         self.window = QtWidgets.QDialog()
         self.Histv1 = Ui_HistM()
