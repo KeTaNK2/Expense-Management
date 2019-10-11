@@ -24,7 +24,38 @@ class Ui_MainWindow(object):
         self.Addv1.DAddDB.clicked.connect(self.Addf)
         self.Addv1.GAddDB.clicked.connect(self.AddfG)
         self.Addv1.OAddDB.clicked.connect(self.AddfO)
+        self.Addv1.BAddDB_2.clicked.connect(self.AddfB)
         self.window.show()
+
+    def AddfB(self):
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select exists(select 1 from expense where d::date = date('now'))''')
+        c = cur.fetchone()
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        if c[0] == True:
+            cur.execute('''SELECT billdis FROM expense WHERE d::date = date('now')''')
+            odis1 = cur.fetchone()
+            conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+            cur = conn.cursor()
+            if odis1[0] == None:
+                cur.execute('''update expense set billdis='%s' where d::date = date('now')''' % (self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())))
+                conn.commit()
+            else:
+                print("notnull")
+                ndis = odis1[0] + " " + self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())
+                cur.execute('''update expense set billdis='%s' where d::date = date('now')''' % ndis)
+            conn.commit()
+            cur.execute('''update expense set bill=bill+%s where d::date = date('now')''' % (self.Addv1.BAmount.text()))
+            conn.commit()
+            self.Addv1.ResIns_4.setText("Date Added successfully")
+        else:
+            cur.execute('''insert into expense(d,bill,billdis) values (date('now'),%s,'%s') ;''' % (self.Addv1.BAmount.text(),self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())))
+            conn.commit()
+            self.Addv1.ResIns_4.setText("Date Added successfully")
+
+        conn.close()
 
     def Addf(self):
         conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
@@ -36,7 +67,7 @@ class Ui_MainWindow(object):
             conn.commit()
             self.Addv1.ResIns.setText("Data Added Seccessfully !!!")
         else:
-            cur.execute('''insert into expense(d,%s) values (date('now'),%s,'%s') ;'''%(self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex())))
+            cur.execute('''insert into expense(d,%s) values (date('now'),%s) ;'''%(self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex()),self.Addv1.DAmount.text()))
             conn.commit()
             self.Addv1.ResIns.setText("Data Added Seccessfully !!!")
     def AddfG(self):
@@ -49,7 +80,7 @@ class Ui_MainWindow(object):
         if c[0] == True:
             cur.execute('''SELECT grodis FROM expense WHERE d::date = date('now')''')
             odis = cur.fetchone()
-            if odis == None:
+            if odis[0] == None:
                 cur.execute('''update expense set grodis='%s' where d::date = date('now')''' % (self.Addv1.GDis.text()))
             else:
                 ndis = odis[0] + " " + self.Addv1.GDis.text()
@@ -109,9 +140,13 @@ class Ui_MainWindow(object):
         if c[0] == True:
             cur.execute('''SELECT incdis FROM expense WHERE d::date = date('now')''')
             odis = cur.fetchone()
-            ndis=odis[0]+" "+self.Incv1.IncDis.text()
-            cur.execute('''update expense set incdis='%s' where d::date = date('now')'''%ndis)
-            conn.commit()
+            if odis[0] == None:
+                cur.execute('''update expense set incdis='%s' where d::date = date('now')''' % self.Incv1.IncDis.text())
+                conn.commit()
+            else:
+                ndis=odis[0]+" "+self.Incv1.IncDis.text()
+                cur.execute('''update expense set incdis='%s' where d::date = date('now')'''%ndis)
+                conn.commit()
             cur.execute('''update expense set inc=inc+%s where d::date = date('now')'''%(self.Incv1.IncAmount.text()))
             conn.commit()
             self.Res.setText("Date Added successfully")

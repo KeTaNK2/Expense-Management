@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/Add.py" beforeDir="false" afterPath="$PROJECT_DIR$/Add.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Add.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Add.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Expence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Expence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Income.py" beforeDir="false" afterPath="$PROJECT_DIR$/Income.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Income.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Income.ui" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570044929726</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="other groc add">
+      <created>1570262683687</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1570262683687</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +214,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="second" />
     <MESSAGE value="income add complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="income add complete" />
+    <MESSAGE value="other groc add" />
+    <option name="LAST_COMMIT_MESSAGE" value="other groc add" />
   </component>
 </project>

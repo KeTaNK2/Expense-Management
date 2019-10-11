@@ -82,7 +82,7 @@ class Ui_AddM(object):
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.BAddDB_2 = QtWidgets.QPushButton(self.tab_3)
-        self.BAddDB_2.setGeometry(QtCore.QRect(280, 360, 93, 28))
+        self.BAddDB_2.setGeometry(QtCore.QRect(250, 160, 93, 28))
         self.BAddDB_2.setObjectName("BAddDB_2")
         self.comboBox_2 = QtWidgets.QComboBox(self.tab_3)
         self.comboBox_2.setGeometry(QtCore.QRect(30, 70, 261, 31))
@@ -103,6 +103,13 @@ class Ui_AddM(object):
         self.label_4 = QtWidgets.QLabel(self.tab_3)
         self.label_4.setGeometry(QtCore.QRect(450, 30, 81, 31))
         self.label_4.setObjectName("label_4")
+        self.ResIns_4 = QtWidgets.QLabel(self.tab_3)
+        self.ResIns_4.setGeometry(QtCore.QRect(80, 310, 431, 31))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.ResIns_4.setFont(font)
+        self.ResIns_4.setText("")
+        self.ResIns_4.setObjectName("ResIns_4")
         self.AddTab.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
@@ -131,7 +138,7 @@ class Ui_AddM(object):
         self.AddTab.addTab(self.tab_4, "")
 
         self.retranslateUi(AddM)
-        self.AddTab.setCurrentIndex(3)
+        self.AddTab.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(AddM)
 
     def retranslateUi(self, AddM):
