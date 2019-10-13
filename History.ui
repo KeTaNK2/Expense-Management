@@ -29,32 +29,12 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
      <string>Day</string>
     </attribute>
-    <widget class="QDateEdit" name="DS">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>20</y>
-       <width>171</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QTableView" name="tableView">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>721</width>
-       <height>371</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="DSRbt">
      <property name="geometry">
       <rect>
@@ -81,190 +61,124 @@
       <string>TextLabel</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Month</string>
-    </attribute>
-    <widget class="QComboBox" name="MS">
+    <widget class="QLineEdit" name="DS">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>10</y>
-       <width>181</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <item>
-      <property name="text">
-       <string>January</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>February</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>March</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>April</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>May</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>June</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>July</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>August</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Sapteber</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>October</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>November</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>December</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QPushButton" name="MSRbt">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>10</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Seach</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="MSRes">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
        <y>20</y>
-       <width>201</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QTableView" name="tableView_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>731</width>
-       <height>381</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_3">
-    <attribute name="title">
-     <string>Period</string>
-    </attribute>
-    <widget class="QDateEdit" name="P1S">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>171</width>
+       <width>191</width>
        <height>31</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QDateEdit" name="P2S">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>10</y>
-       <width>171</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>20</y>
-       <width>55</width>
-       <height>16</height>
-      </rect>
+     <property name="font">
+      <font>
+       <family>Nova Square</family>
+       <pointsize>18</pointsize>
+      </font>
      </property>
      <property name="text">
-      <string>To</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="PSRes">
+    <widget class="QTableWidget" name="tableWidget">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>20</y>
-       <width>201</width>
-       <height>21</height>
+       <x>20</x>
+       <y>80</y>
+       <width>581</width>
+       <height>351</height>
       </rect>
      </property>
-     <property name="text">
-      <string>TextLabel</string>
+     <property name="rowCount">
+      <number>12</number>
      </property>
-    </widget>
-    <widget class="QPushButton" name="PSRbt">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>10</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Seach</string>
-     </property>
-    </widget>
-    <widget class="QTableView" name="tableView_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>731</width>
-       <height>381</height>
-      </rect>
-     </property>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <column>
+      <property name="text">
+       <string>Discreption</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Value</string>
+      </property>
+     </column>
+     <item row="0" column="0">
+      <property name="text">
+       <string>Income</string>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item row="1" column="0">
+      <property name="text">
+       <string>Source</string>
+      </property>
+     </item>
+     <item row="2" column="0">
+      <property name="text">
+       <string>Today Spent</string>
+      </property>
+     </item>
+     <item row="3" column="0">
+      <property name="text">
+       <string>Food</string>
+      </property>
+     </item>
+     <item row="4" column="0">
+      <property name="text">
+       <string>Travel</string>
+      </property>
+     </item>
+     <item row="5" column="0">
+      <property name="text">
+       <string>Personal</string>
+      </property>
+     </item>
+     <item row="6" column="0">
+      <property name="text">
+       <string>Groccery</string>
+      </property>
+     </item>
+     <item row="7" column="0">
+      <property name="text">
+       <string>Gorccery Items</string>
+      </property>
+     </item>
+     <item row="8" column="0">
+      <property name="text">
+       <string>Bills</string>
+      </property>
+     </item>
+     <item row="9" column="0">
+      <property name="text">
+       <string>Bill Name</string>
+      </property>
+     </item>
+     <item row="10" column="0">
+      <property name="text">
+       <string>Other</string>
+      </property>
+     </item>
+     <item row="11" column="0">
+      <property name="text">
+       <string>Other Item</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>

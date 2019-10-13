@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
                 conn.commit()
             else:
                 print("notnull")
-                ndis = odis1[0] + " " + self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())
+                ndis = odis1[0] + "," + self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())
                 cur.execute('''update expense set billdis='%s' where d::date = date('now')''' % ndis)
             conn.commit()
             cur.execute('''update expense set bill=bill+%s where d::date = date('now')''' % (self.Addv1.BAmount.text()))
@@ -54,7 +54,8 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,bill,billdis) values (date('now'),%s,'%s') ;''' % (self.Addv1.BAmount.text(),self.Addv1.comboBox_2.itemText(self.Addv1.comboBox_2.currentIndex())))
             conn.commit()
             self.Addv1.ResIns_4.setText("Date Added successfully")
-
+        cur.execute('''update expense set spent=food+travel+personal+groc+bill+oth where d=date('now')''')
+        conn.commit()
         conn.close()
 
     def Addf(self):
@@ -70,6 +71,9 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,%s) values (date('now'),%s) ;'''%(self.Addv1.DcomboBox.itemText(self.Addv1.DcomboBox.currentIndex()),self.Addv1.DAmount.text()))
             conn.commit()
             self.Addv1.ResIns.setText("Data Added Seccessfully !!!")
+        cur.execute('''update expense set spent=food+travel+personal+groc+bill+oth where d=date('now')''')
+        conn.commit()
+        conn.close()
     def AddfG(self):
         conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
         cur = conn.cursor()
@@ -83,7 +87,7 @@ class Ui_MainWindow(object):
             if odis[0] == None:
                 cur.execute('''update expense set grodis='%s' where d::date = date('now')''' % (self.Addv1.GDis.text()))
             else:
-                ndis = odis[0] + " " + self.Addv1.GDis.text()
+                ndis = odis[0] + "," + self.Addv1.GDis.text()
                 cur.execute('''update expense set grodis='%s' where d::date = date('now')''' % ndis)
             conn.commit()
             cur.execute('''update expense set groc=groc+%s where d::date = date('now')'''%(self.Addv1.GAmount.text()))
@@ -93,8 +97,10 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,groc,grodis) values (date('now'),%s,'%s') ;''' % (self.Addv1.GAmount.text(),self.Addv1.GDis.text()))
             conn.commit()
             self.Addv1.ResIns_2.setText("Date Added successfully")
-
+        cur.execute('''update expense set spent=food+travel+personal+groc+bill+oth where d=date('now')''')
+        conn.commit()
         conn.close()
+
     def AddfO(self):
         conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
         cur = conn.cursor()
@@ -112,7 +118,7 @@ class Ui_MainWindow(object):
                  print("null")
             else:
                  print("notnull")
-                 ndis = odis1[0] + " " + self.Addv1.ODis.text()
+                 ndis = odis1[0] + "," + self.Addv1.ODis.text()
                  cur.execute('''update expense set othdis='%s' where d::date = date('now')''' % ndis)
             conn.commit()
             cur.execute('''update expense set oth=oth+%s where d::date = date('now')''' % (self.Addv1.OAmount.text()))
@@ -122,7 +128,8 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,oth,othdis) values (date('now'),%s,'%s') ;''' % (self.Addv1.OAmount.text(), self.Addv1.ODis.text()))
             conn.commit()
             self.Addv1.ResIns_3.setText("Date Added successfully")
-
+        cur.execute('''update expense set spent=food+travel+personal+groc+bill+oth where d=date('now')''')
+        conn.commit()
         conn.close()
     def Incv(self):
         self.window = QtWidgets.QDialog()
@@ -144,7 +151,7 @@ class Ui_MainWindow(object):
                 cur.execute('''update expense set incdis='%s' where d::date = date('now')''' % self.Incv1.IncDis.text())
                 conn.commit()
             else:
-                ndis=odis[0]+" "+self.Incv1.IncDis.text()
+                ndis=odis[0]+","+self.Incv1.IncDis.text()
                 cur.execute('''update expense set incdis='%s' where d::date = date('now')'''%ndis)
                 conn.commit()
             cur.execute('''update expense set inc=inc+%s where d::date = date('now')'''%(self.Incv1.IncAmount.text()))
@@ -154,12 +161,18 @@ class Ui_MainWindow(object):
             cur.execute('''insert into expense(d,inc,incdis) values (date('now'),%s,'%s') ;''' % (self.Incv1.IncAmount.text(),self.Incv1.IncDis.text()))
             conn.commit()
             self.Res.setText("Date Added successfully")
+        self.Incv1.Resinc.setText("Date Added successfully")
         conn.close()
     def Histv(self):
         self.window = QtWidgets.QDialog()
         self.Histv1 = Ui_HistM()
         self.Histv1.setupUi(self.window)
+
         self.window.show()
+
+
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(844, 655)

@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7b64d48-cba9-478a-8275-eb76695b7691" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Add.py" beforeDir="false" afterPath="$PROJECT_DIR$/Add.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Add.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Add.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Expence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Expence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/History.py" beforeDir="false" afterPath="$PROJECT_DIR$/History.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/History.ui" beforeDir="false" afterPath="$PROJECT_DIR$/History.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Income.py" beforeDir="false" afterPath="$PROJECT_DIR$/Income.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Income.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Income.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570262683687</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="all add">
+      <created>1570787725274</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1570787725274</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +226,7 @@
     <MESSAGE value="second" />
     <MESSAGE value="income add complete" />
     <MESSAGE value="other groc add" />
-    <option name="LAST_COMMIT_MESSAGE" value="other groc add" />
+    <MESSAGE value="all add" />
+    <option name="LAST_COMMIT_MESSAGE" value="all add" />
   </component>
 </project>

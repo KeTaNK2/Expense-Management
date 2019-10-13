@@ -35,7 +35,21 @@ class Expense (QMainWindow) :
             self.Exp.Res.setText("Error")
         finally:
             self.Exp.Res.setText("Done!!")
-
+        conn = psycopg2.connect(database="Expenses", user="postgres", password="ketan9850", host="127.0.0.1",port="5432")
+        cur = conn.cursor()
+        cur.execute('''select sum(inc) from expense''')
+        inc=cur.fetchone()
+        cur.execute('''select sum(spent) from expense''')
+        spe = cur.fetchone()
+        cur.execute('''select sum(inc)-sum(spent) from expense''')
+        rem = cur.fetchone()
+        cur.execute('''select spent from expense  where d=date('now')''')
+        tospe = cur.fetchone()
+        conn.close()
+        self.Exp.MonIncSh.display(inc[0])
+        self.Exp.ToSpm.display(spe[0])
+        self.Exp.Rem.display(rem[0])
+        self.Exp.Tospe.display(tospe[0])
 
 
 
